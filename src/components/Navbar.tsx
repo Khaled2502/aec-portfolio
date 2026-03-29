@@ -48,7 +48,11 @@ const Navbar = () => {
             className="flex items-center cursor-pointer p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-300"
             aria-label="Home"
           >
-            <img src="/assets/images/logo.png" alt="KH Logo" className="h-16 w-auto" />
+            <img
+              src="/assets/images/logo.png"
+              alt="KH Logo"
+              className="h-16 w-auto"
+            />
           </motion.a>
 
           {/* Desktop Navigation */}
