@@ -1,0 +1,21 @@
+include:
+  - .nojekyll
+  - .htaccess
+
+plugins:
+  - jekyll-redirect-from
+
+exclude:
+  - node_modules
+  - dist
+  - README.md
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - vite.config.ts
+  - .eslintrc.cjs
+  - .eslintignore
+  - postcss.config.js
+  - tailwind.config.js
+
+markdown: kramdown
