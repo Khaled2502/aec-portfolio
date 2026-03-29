@@ -49,7 +49,7 @@ const Navbar = () => {
             aria-label="Home"
           >
             <img
-              src="/assets/images/logo.png"
+              src="public/assets/images/logo.png"
               alt="KH Logo"
               className="h-16 w-auto"
             />
