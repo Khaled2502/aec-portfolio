@@ -42,6 +42,8 @@
     },
     "services": {
       "title": "الخدمات",
+      "learnMore": "عرض المزيد",
+      "technologies": "تقننيات و ادوات",
       "items": {
         "bim": {
           "title": "أدوات BIM مخصصة",

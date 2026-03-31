@@ -1,9 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { FiBox, FiCommand, FiGrid, FiArrowRight } from "react-icons/fi";
+import {
+  FiBox,
+  FiCommand,
+  FiGrid,
+  FiArrowRight,
+  FiArrowLeft,
+} from "react-icons/fi";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const ServicesSection = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
 
   const services = [
     {
@@ -100,8 +108,12 @@ const ServicesSection = () => {
 
                   {/* Learn More Button */}
                   <button className="flex items-center text-primary hover:text-accent transition-colors group">
-                    Learn More
-                    <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+                    {t("services.learnMore")}
+                    {language === "ar" ? (
+                      <FiArrowLeft className="mr-2 transform group-hover:-translate-x-1 transition-transform" />
+                    ) : (
+                      <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -118,7 +130,7 @@ const ServicesSection = () => {
           className="mt-20"
         >
           <h3 className="text-2xl font-bold text-center mb-10">
-            Technologies & Tools
+            {t("services.technologies")}
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[

@@ -44,4 +44,31 @@
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24;
   }
+
+  /* App Background Styles */
+  .app-container {
+    @apply min-h-screen text-textDark dark:text-textLight transition-all duration-500;
+    background-image: url(/AEC-portfolio/assets/images/Background-Light.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  html.dark .app-container {
+    background-image: url(/AEC-portfolio/assets/images/Background-Dark.png);
+  }
+
+  .app-overlay {
+    @apply fixed inset-0 pointer-events-none transition-opacity duration-500;
+    opacity: 0;
+  }
+
+  html.dark .app-overlay {
+    opacity: 0.3;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .app-content {
+    @apply relative z-10;
+  }
 }

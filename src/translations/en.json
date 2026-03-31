@@ -42,6 +42,8 @@
     },
     "services": {
       "title": "Services",
+      "learnMore": "Learn More",
+      "technologies": "Technologies & Tools",
       "items": {
         "bim": {
           "title": "Custom BIM Tools",

@@ -31,76 +31,99 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative section-container flex flex-col justify-center min-h-screen">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl mx-auto text-center"
-        >
-          {/* Main Title */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-6"
-          >
-            {t("hero.title")}
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            variants={itemVariants}
-            className="text-xl md:text-2xl text-grayMuted mb-12"
-          >
-            {t("hero.subtitle")}
-          </motion.p>
-
-          {/* CTA Buttons */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          {/* Left Side - Content */}
           <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col justify-center"
           >
-            <a href="#projects" className="neon-button">
-              {t("hero.cta.projects")}
-            </a>
-            <a
-              href="#contact"
-              className="px-6 py-2 rounded-lg border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
+            {/* Main Title */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-4xl md:text-6xl font-bold mb-6"
             >
-              {t("hero.cta.contact")}
-            </a>
+              {t("hero.title")}
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              variants={itemVariants}
+              className="text-xl md:text-2xl text-grayMuted mb-12"
+            >
+              {t("hero.subtitle")}
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4 mb-16"
+            >
+              <a href="#projects" className="neon-button">
+                {t("hero.cta.projects")}
+              </a>
+              <a
+                href="#contact"
+                className="px-6 py-2 rounded-lg border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
+              >
+                {t("hero.cta.contact")}
+              </a>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              variants={itemVariants}
+              className="flex items-center gap-6 direction-ltr"
+            >
+              <a
+                href="https://github.com/Khaled2502"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-grayMuted hover:text-primary transition-colors"
+                aria-label="GitHub"
+              >
+                <FiGithub className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/khaled-abd-elmotaal-190b42254/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-grayMuted hover:text-primary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FiLinkedin className="w-6 h-6" />
+              </a>
+              <a
+                href="mailto:eng.khaledabdelmotaal@gmail.com"
+                className="text-grayMuted hover:text-primary transition-colors"
+                aria-label="Email"
+              >
+                <FiMail className="w-6 h-6" />
+              </a>
+            </motion.div>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Right Side - Background Image */}
           <motion.div
-            variants={itemVariants}
-            className="flex justify-center items-center gap-6 direction-ltr"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative flex items-center justify-center h-96 lg:h-full"
           >
-            <a
-              href="https://github.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-grayMuted hover:text-primary transition-colors"
-              aria-label="GitHub"
-            >
-              <FiGithub className="w-6 h-6" />
-            </a>
-            <a
-              href="https://linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-grayMuted hover:text-primary transition-colors"
-              aria-label="LinkedIn"
-            >
-              <FiLinkedin className="w-6 h-6" />
-            </a>
-            <a
-              href="mailto:your.email@example.com"
-              className="text-grayMuted hover:text-primary transition-colors"
-              aria-label="Email"
-            >
-              <FiMail className="w-6 h-6" />
-            </a>
+            {/* Glow */}
+            <div className="absolute w-72 h-72 bg-primary/20 blur-3xl rounded-full"></div>
+
+            {/* Image Card */}
+            <div className="relative z-10 p-2 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl">
+              <img
+                src="/AEC-portfolio/assets/images/Background.png"
+                alt="Khaled Hussein"
+                className="w-72 h-72 object-cover object-top rounded-xl"
+              />
+            </div>
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.div

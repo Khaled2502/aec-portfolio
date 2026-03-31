@@ -20,16 +20,22 @@ function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <div className="min-h-screen bg-lightBg dark:bg-darkBg text-textDark dark:text-textLight">
-          <Navbar />
-          <main>
-            <HeroSection />
-            <AboutSection />
-            <ServicesSection />
-            <ProjectsSection />
-            <ContactSection />
-          </main>
-          <Footer />
+        <div className="app-container">
+          {/* Background overlay for dark mode */}
+          <div className="app-overlay" />
+
+          {/* Content wrapper */}
+          <div className="app-content">
+            <Navbar />
+            <main>
+              <HeroSection />
+              <AboutSection />
+              <ServicesSection />
+              <ProjectsSection />
+              <ContactSection />
+            </main>
+            <Footer />
+          </div>
         </div>
       </LanguageProvider>
     </ThemeProvider>
