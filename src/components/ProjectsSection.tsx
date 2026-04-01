@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -68,6 +68,19 @@ const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState<string>("all");
 
+  // Prevent scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
+
   const filteredProjects =
     filter === "all"
       ? projects
@@ -111,8 +124,10 @@ const ProjectsSection = () => {
                   : "bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
               } transition-colors`}
             >
-              <Icon className="w-4 h-4 mr-2" />
-              {label}
+              <div className="flex items-center gap-2">
+                <Icon className="w-4 h-4" />
+                <span>{label}</span>
+              </div>
             </motion.button>
           ))}
         </div>
@@ -176,6 +191,8 @@ const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-grayMuted hover:text-primary transition-colors"
+                        aria-label="View on GitHub"
+                        title="GitHub"
                       >
                         <FiGithub className="w-5 h-5" />
                       </a>
@@ -186,6 +203,8 @@ const ProjectsSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-grayMuted hover:text-primary transition-colors"
+                        aria-label="View live project"
+                        title="Live Project"
                       >
                         <FiExternalLink className="w-5 h-5" />
                       </a>
@@ -218,6 +237,8 @@ const ProjectsSection = () => {
                   <button
                     onClick={() => setSelectedProject(null)}
                     className="absolute top-4 right-4 p-2 rounded-full bg-black/20 text-white hover:bg-black/30 transition-colors"
+                    aria-label="Close modal"
+                    title="Close"
                   >
                     <FiX className="w-5 h-5" />
                   </button>
