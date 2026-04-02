@@ -1,32 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useScrollThrottle } from "../hooks/useScrollThrottle";
 import { motion } from "framer-motion";
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
+import { NAV_ITEMS } from "../constants/links";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const isScrolled = useScrollThrottle(50, 100);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navItems = [
-    { id: "home", label: t("nav.home") },
-    { id: "about", label: t("nav.about") },
-    { id: "services", label: t("nav.services") },
-    { id: "projects", label: t("nav.projects") },
-    { id: "contact", label: t("nav.contact") },
-  ];
+  const navItemsWithLabels = NAV_ITEMS.map((item) => ({
+    id: item.id,
+    label: t(item.labelKey),
+  }));
 
   return (
     <motion.nav
@@ -57,7 +48,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center justify-evenly w-full max-w-md">
-            {navItems.map((item) => (
+            {navItemsWithLabels.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -116,7 +107,7 @@ const Navbar = () => {
         className="md:hidden bg-lightBg dark:bg-darkBg"
       >
         <div className="px-4 pt-2 pb-4 space-y-4">
-          {navItems.map((item) => (
+          {navItemsWithLabels.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}

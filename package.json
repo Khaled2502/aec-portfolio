@@ -1,8 +1,28 @@
 {
   "name": "aec-portfolio",
+  "description": "Modern AEC Portfolio - BIM Developer & Digital Transformation Specialist",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "author": "Khaled Hussein",
+  "license": "MIT",
+  "homepage": "https://github.com/Khaled2502/aec-portfolio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khaled2502/aec-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Khaled2502/aec-portfolio/issues"
+  },
+  "keywords": [
+    "aec",
+    "bim",
+    "portfolio",
+    "react",
+    "typescript",
+    "vite",
+    "tailwind"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -20,6 +40,7 @@
     "react-icons": "^4.11.0"
   },
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

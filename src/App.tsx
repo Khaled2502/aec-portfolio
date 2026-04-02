@@ -1,14 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
-import ServicesSection from "./components/ServicesSection";
-import ProjectsSection from "./components/ProjectsSection";
-import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import "./index.css";
+
+// Lazy load heavy components
+const ServicesSection = lazy(() =>
+  import("./components/ServicesSection").then((module) => ({
+    default: module.default,
+  })),
+);
+const ProjectsSection = lazy(() =>
+  import("./components/ProjectsSection").then((module) => ({
+    default: module.default,
+  })),
+);
+const ContactSection = lazy(() =>
+  import("./components/ContactSection").then((module) => ({
+    default: module.default,
+  })),
+);
+
+// Loading fallback component
+const SectionLoader = () => (
+  <div className="py-20 bg-gradient-to-b from-lightBg to-gray-50 dark:from-darkBg dark:to-gray-900 flex items-center justify-center">
+    <div className="animate-pulse">
+      <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 rounded" />
+    </div>
+  </div>
+);
 
 function App() {
   // Handle initial scroll restoration
@@ -30,9 +53,15 @@ function App() {
             <main>
               <HeroSection />
               <AboutSection />
-              <ServicesSection />
-              <ProjectsSection />
-              <ContactSection />
+              <Suspense fallback={<SectionLoader />}>
+                <ServicesSection />
+              </Suspense>
+              <Suspense fallback={<SectionLoader />}>
+                <ProjectsSection />
+              </Suspense>
+              <Suspense fallback={<SectionLoader />}>
+                <ContactSection />
+              </Suspense>
             </main>
             <Footer />
           </div>

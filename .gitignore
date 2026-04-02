@@ -32,3 +32,34 @@ dist-ssr
 build
 .next
 out
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage
+.nyc_output
+
+# Production
+dist/
+build/
+
+# Misc
+.cache
+.parcel-cache
+.prettierignore
+
+# Internal Project Documentation (not for GitHub)
+OPTIMIZATION_PLAN.md
+PROJECT_REVIEW_COMPLETE.md
+CODE_DUPLICATION_REVIEW.md
+FINAL_REVIEW_SUMMARY.md
+GITHUB_DEPLOYMENT_CHECKLIST.md

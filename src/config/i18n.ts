@@ -1,0 +1,19 @@
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import enTranslations from "../translations/en.json";
+import arTranslations from "../translations/ar.json";
+
+// Initialize i18next with English and Arabic translations
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: enTranslations.translation },
+    ar: { translation: arTranslations.translation },
+  },
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
+
+export default i18n;

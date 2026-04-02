@@ -10,6 +10,8 @@ import {
   FiX,
 } from "react-icons/fi";
 import { useLanguage } from "../contexts/LanguageContext";
+import { SectionHeader, Card } from "./shared";
+import { containerVariants, itemVariants } from "../constants/animations";
 
 const ServicesSection = () => {
   const { t } = useTranslation();
@@ -49,37 +51,13 @@ const ServicesSection = () => {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
-  };
-
   return (
     <section
       id="services"
       className="py-20 bg-gradient-to-b from-gray-50 to-lightBg dark:from-gray-900 dark:to-darkBg"
     >
       <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            {t("services.title")}
-          </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto" />
-        </motion.div>
+        <SectionHeader title={t("services.title")} />
 
         <motion.div
           variants={containerVariants}
@@ -89,43 +67,36 @@ const ServicesSection = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
         >
           {services.map((service) => (
-            <motion.div
-              key={service.key}
-              variants={itemVariants}
-              whileHover={{ scale: 1.03 }}
-              className="relative group"
-            >
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 rounded-xl transition-opacity duration-300`}
-                />
-                <div className="relative">
+            <motion.div key={service.key} variants={itemVariants}>
+              <Card
+                icon={
                   <div className="text-4xl mb-6 text-primary">
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="text-grayMuted mb-6 flex-1">
-                    {service.description}
-                  </p>
-                  <button
-                    onClick={() =>
-                      setSelectedService(
-                        selectedService === service.key ? null : service.key,
-                      )
-                    }
-                    className="flex items-center text-primary hover:text-accent transition-colors group"
-                  >
-                    {t("services.learnMore")}
-                    {language === "ar" ? (
-                      <FiArrowLeft className="mr-2 transform group-hover:-translate-x-1 transition-transform" />
-                    ) : (
-                      <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
-                    )}
-                  </button>
-                </div>
-              </div>
+                }
+                gradient={service.gradient}
+                variant="service"
+              >
+                <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
+                <p className="text-grayMuted mb-6 flex-1">
+                  {service.description}
+                </p>
+                <button
+                  onClick={() =>
+                    setSelectedService(
+                      selectedService === service.key ? null : service.key,
+                    )
+                  }
+                  className="flex items-center text-primary hover:text-accent transition-colors group"
+                >
+                  {t("services.learnMore")}
+                  {language === "ar" ? (
+                    <FiArrowLeft className="mr-2 transform group-hover:-translate-x-1 transition-transform" />
+                  ) : (
+                    <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+                  )}
+                </button>
+              </Card>
             </motion.div>
           ))}
         </motion.div>

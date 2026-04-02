@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { FiMail, FiLinkedin, FiGithub, FiSend } from "react-icons/fi";
-import emailjs from "emailjs-com";
+import { FiSend, FiLinkedin, FiGithub, FiMail, FiPhone } from "react-icons/fi";
+import { useFormDebounce } from "../hooks";
+import { SOCIAL_LINKS, EMAILJS_CONFIG } from "../constants/links";
 
 const ContactSection = () => {
   const { t } = useTranslation();
@@ -19,13 +20,31 @@ const ContactSection = () => {
   >("idle");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
+  // Debounced form validation
+  const validateForm = (data: typeof formData) => {
+    // Basic validation
+    if (!data.name.trim() || !data.email.trim() || !data.message.trim()) {
+      return false;
+    }
+    return true;
+  };
+
+  const { debouncedCallback: debouncedValidate } = useFormDebounce(
+    validateForm,
+    500,
+  );
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+      debouncedValidate(updated); // Debounced validation
+      return updated;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,14 +52,19 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
+      // Dynamically import emailjs only when needed (reduces initial bundle)
+      const emailjs = await import("emailjs-com").then(
+        (module) => module.default,
+      );
+
       await emailjs.send(
-        "service_gsedx99", // Replace with your EmailJS service ID
-        "template_n0zexel", // Replace with your EmailJS template ID
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
         {
           ...formData,
           date: new Date().toLocaleString(),
         },
-        "xEOxLfJfo6mSBoL5g", // Replace with your EmailJS public key
+        EMAILJS_CONFIG.PUBLIC_KEY,
       );
 
       setSubmitStatus("success");
@@ -59,23 +83,22 @@ const ContactSection = () => {
     }
   };
 
-  const socialLinks = [
-    {
-      icon: <FiLinkedin className="w-6 h-6" />,
-      url: "https://www.linkedin.com/in/khaled-abd-elmotaal-190b42254/",
-      label: "LinkedIn",
-    },
-    {
-      icon: <FiGithub className="w-6 h-6" />,
-      url: "https://github.com/Khaled2502",
-      label: "GitHub",
-    },
-    {
-      icon: <FiMail className="w-6 h-6" />,
-      url: "mailto:eng.khaledabdelmotaal@gmail.com",
-      label: "Email",
-    },
-  ];
+  // Helper function to get icon component
+  const getIconComponent = (iconName: string) => {
+    const iconClass = "w-6 h-6";
+    switch (iconName) {
+      case "github":
+        return <FiGithub className={iconClass} />;
+      case "linkedin":
+        return <FiLinkedin className={iconClass} />;
+      case "mail":
+        return <FiMail className={iconClass} />;
+      case "phone":
+        return <FiPhone className={iconClass} />;
+      default:
+        return <FiMail className={iconClass} />;
+    }
+  };
 
   const faqs = t("contact.faq.items", { returnObjects: true });
 
@@ -296,17 +319,25 @@ const ContactSection = () => {
               </p>
 
               <div className="space-y-6 mb-8 ">
-                {socialLinks.map((link, index) => (
+                {SOCIAL_LINKS.map((link) => (
                   <motion.a
-                    key={index}
+                    key={link.id}
                     href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={
+                      link.id !== "phone" && link.id !== "email"
+                        ? "_blank"
+                        : undefined
+                    }
+                    rel={
+                      link.id !== "phone" && link.id !== "email"
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="w-fit flex items-center space-x-4 text-grayMuted hover:text-primary transition-colors"
                     whileHover={{ x: 10 }}
                   >
                     <div className="p-3 rounded-full bg-gray-100 dark:bg-gray-700 ml-2">
-                      {link.icon}
+                      {getIconComponent(link.icon)}
                     </div>
                     <span className="ml-4">{link.label}</span>
                   </motion.a>

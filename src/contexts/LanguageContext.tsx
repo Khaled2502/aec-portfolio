@@ -1,21 +1,12 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import enTranslations from "../translations/en.json";
-import arTranslations from "../translations/ar.json";
-
-// Initialize i18next
-i18n.use(initReactI18next).init({
-  resources: {
-    en: enTranslations,
-    ar: arTranslations,
-  },
-  lng: "en",
-  fallbackLng: "en",
-  interpolation: {
-    escapeValue: false,
-  },
-});
+import "../config/i18n";
 
 type Language = "en" | "ar";
 
@@ -25,21 +16,31 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>(() => {
-    const savedLang = localStorage.getItem("language") as Language;
-    return savedLang || "en";
+    // Check localStorage first
+    if (typeof window !== "undefined") {
+      const savedLang = localStorage.getItem("language") as Language;
+      if (savedLang === "ar" || savedLang === "en") {
+        return savedLang;
+      }
+    }
+    return "en";
   });
+
+  // Apply language on mount and when language changes
+  useEffect(() => {
+    i18n.changeLanguage(language);
+    localStorage.setItem("language", language);
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = language;
+  }, [language]);
 
   const handleLanguageChange = (lang: Language) => {
     setLanguage(lang);
-    i18n.changeLanguage(lang);
-    localStorage.setItem("language", lang);
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = lang;
   };
 
   return (

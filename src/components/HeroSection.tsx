@@ -1,27 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { SocialLinks } from "./shared";
+import { containerVariants, itemVariants } from "../constants/animations";
 
 const HeroSection = () => {
   const { t } = useTranslation();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
 
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
@@ -31,13 +14,13 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative section-container flex flex-col justify-center min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-16 items-center">
           {/* Left Side - Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-center w-full"
           >
             {/* Main Title */}
             <motion.h1
@@ -72,35 +55,8 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Social Links */}
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center gap-6 direction-ltr"
-            >
-              <a
-                href="https://github.com/Khaled2502"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-grayMuted hover:text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <FiGithub className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/khaled-abd-elmotaal-190b42254/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-grayMuted hover:text-primary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <FiLinkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="mailto:eng.khaledabdelmotaal@gmail.com"
-                className="text-grayMuted hover:text-primary transition-colors"
-                aria-label="Email"
-              >
-                <FiMail className="w-6 h-6" />
-              </a>
+            <motion.div variants={itemVariants}>
+              <SocialLinks variant="hero" direction="ltr" />
             </motion.div>
           </motion.div>
 

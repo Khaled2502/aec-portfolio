@@ -7,17 +7,19 @@
       "projects": "Projects",
       "contact": "Contact"
     },
+
     "hero": {
-      "title": "I'm Khaled Hussein",
-      "subtitle": "AEC Developer — bridging engineering and software",
+      "title": "Khaled Hussien Abdel-Motaal",
+      "subtitle": "Welcome to my world of engineering innovation.\nDriving digital transformation in the AEC industry through BIM systems, automation, and intelligent engineering workflows",
       "cta": {
         "projects": "View Projects",
         "contact": "Contact Me"
       }
     },
+
     "about": {
       "title": "About Me",
-      "description": "I build intelligent tools that help engineers design smarter.",
+      "description": "I build intelligent tools and scalable systems that empower engineering teams to design, coordinate, and deliver projects more efficiently, while reducing errors and optimizing workflows. My work bridges the gap between technical precision and practical execution, helping companies transform their operations and achieve measurable results.",
       "skills": {
         "bim": "BIM Development",
         "automation": "Automation",
@@ -27,19 +29,29 @@
       "experience": {
         "bimDev": {
           "title": "BIM Development",
-          "years": "5+ Years Experience",
-          "description": "Specialized in creating custom tools and automation solutions for BIM workflows."
+          "years": "5+ years of experience",
+          "description": "Specialized in designing and implementing custom BIM tools to optimize workflows, coordinate multidisciplinary teams, and ensure high-quality project delivery. Skilled in process analysis, developing scalable smart solutions, and linking project data to support efficient decision-making."
         },
         "software": {
           "title": "Software Engineering",
-          "stack": "Modern Tech Stack",
-          "description": "Proficient in multiple programming languages and modern software development practices."
+          "stack": "C# / Python / Dynamo / Revit API",
+          "description": "Strong programming experience within the engineering context, creating maintainable and scalable tools and systems. Focused on applying software engineering principles to enhance BIM team performance and productivity."
+        },
+        "dynamo": {
+          "title": "Dynamo & Visual Programming",
+          "years": "Extensive experience in Dynamo scripts",
+          "description": "Design and implementation of Dynamo scripts to automate modeling and design tasks, improve workflow efficiency, reduce human errors, and seamlessly connect Revit with project data."
+        },
+        "digitalTransformation": {
+          "title": "Digital Transformation & Workflow Optimization",
+          "description": "Designing integrated digital solutions to convert traditional workflows into intelligent digital environments using BIM and automation, boosting productivity, reducing time/resource waste, and enabling highly effective project teams."
         }
       },
       "technical": {
-        "title": "Technical Proficiency"
+        "title": "Technical Skills"
       }
     },
+
     "services": {
       "title": "Services",
       "learnMore": "Learn More",
@@ -47,22 +59,24 @@
       "items": {
         "bim": {
           "title": "Custom BIM Tools",
-          "description": "Tailored solutions for BIM workflows and automation"
+          "description": "Tailored solutions designed to streamline BIM workflows, automate repetitive tasks, and enhance collaboration across engineering teams."
         },
         "automation": {
           "title": "AEC Automation Scripts",
-          "description": "Efficient scripts to automate repetitive tasks"
+          "description": "Efficient scripts and workflows that reduce manual effort, accelerate project delivery, and ensure consistency in engineering processes."
         },
         "integration": {
-          "title": "Software Integration & Dashboards",
-          "description": "Seamless integration of AEC software tools"
+          "title": "Software & Dashboard Integration",
+          "description": "Seamless integration of AEC software, data, and dashboards to unify tools, optimize workflows, and provide actionable insights."
         }
       }
     },
+
     "projects": {
       "title": "Projects",
       "viewDetails": "View Details"
     },
+
     "contact": {
       "title": "Contact Me",
       "form": {
@@ -88,40 +102,49 @@
           "planning": "Planning (3+ months)"
         }
       },
+
       "info": {
         "title": "Let's Connect",
         "description": "Feel free to reach out for collaborations or just a friendly chat. I'm always open to discussing new projects or opportunities."
       },
+
       "availability": {
         "title": "Availability",
         "description": "Currently available for freelance projects and collaborations. Let's create something amazing together!"
       },
+
       "faq": {
         "title": "Frequently Asked Questions",
         "items": [
           {
             "id": "faq-1",
             "question": "What types of projects do you work on?",
-            "answer": "I specialize in BIM implementation, process automation, and digital transformation projects for construction and engineering firms."
+            "answer": "I specialize in advanced BIM projects, automation solutions, and digital transformation for engineering and construction companies. Projects include developing custom tools, optimizing workflows, and connecting multidisciplinary teams to ensure efficient project delivery."
           },
           {
             "id": "faq-2",
             "question": "How do you manage remote collaboration?",
-            "answer": "I use cloud-based BIM platforms, modern project management tools, and maintain regular communication to ensure smooth and efficient workflows."
+            "answer": "I leverage cloud-based BIM platforms, modern project management tools, and regular communication to coordinate remote teams. I integrate automation and advanced technologies to enable real-time data sharing and updates."
           },
           {
             "id": "faq-3",
             "question": "What is the typical project timeline?",
-            "answer": "Depending on the project complexity, timelines usually range from one month to over six months. A clear schedule is defined during the initial phase."
+            "answer": "It depends on project complexity and size, typically ranging from one month to six months or more. I provide detailed plans with clear milestones, review points, and tracking tools to ensure deadlines are met and results are achieved."
           },
           {
             "id": "faq-4",
             "question": "Do you offer training or workshops?",
-            "answer": "Yes, I provide customized BIM and automation workshops tailored to the team's size and experience level."
+            "answer": "Yes, I provide tailored workshops and training sessions in BIM and automation, designed according to team size and expertise level, focusing on practical applications that can be immediately implemented in projects."
+          },
+          {
+            "id": "faq-5",
+            "question": "How can my company benefit from your services?",
+            "answer": "I analyze your company's needs and design smart tools and systems that fit your current workflows, increasing productivity, reducing errors, and enabling efficient digital transformation."
           }
         ]
       }
     },
+
     "footer": {
       "copyright": "Khaled Hussein. All rights reserved."
     }

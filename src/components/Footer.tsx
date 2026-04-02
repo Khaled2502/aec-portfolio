@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
-import { FiSun, FiMoon, FiLinkedin, FiMail, FiPhone } from "react-icons/fi";
+import { FiSun, FiMoon } from "react-icons/fi";
+import { SocialLinks } from "./shared";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -26,42 +27,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Column 2: Social Links */}
-          <div className="flex space-x-4 justify-center md:justify-start ">
-            {/* Phone */}
-            <motion.a
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              href="tel:+966542973323"
-              className="text-grayMuted hover:text-primary transition-colors ml-4"
-              aria-label="Phone"
-            >
-              <FiPhone className="w-6 h-6" />
-            </motion.a>
-
-            {/* Email */}
-            <motion.a
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              href="mailto:eng.khaledabdelmotaal@gmail.com"
-              className="text-grayMuted hover:text-primary transition-colors ml-4"
-              aria-label="Email"
-            >
-              <FiMail className="w-6 h-6" />
-            </motion.a>
-
-            {/* LinkedIn */}
-            <motion.a
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              href="https://www.linkedin.com/in/khaled-abd-elmotaal-190b42254/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-grayMuted hover:text-primary transition-colors ml-4"
-              aria-label="LinkedIn"
-            >
-              <FiLinkedin className="w-6 h-6" />
-            </motion.a>
-          </div>
+          <SocialLinks variant="footer" />
 
           {/* Column 3: Theme & Language Controls */}
           <div className="flex items-center space-x-4">
